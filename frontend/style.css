@@ -1,0 +1,78 @@
+
+:root {
+    --primary: rgb(250, 230, 170);
+    --light-color: rgb(235, 235, 235);
+    --dark-color: rgb(5,5, 30);
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+    background: var(--dark-color);
+    color: var(--light-color);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    color: var(--primary);
+    font-size: 2.5rem;
+}
+
+
+
+.btn-primary {
+    background: var(--primary);
+    color: var(--dark-bg-color);
+    font-weight: 800;
+    border: none;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2rem;
+    max-width: 400px;
+    max-height: 200px;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .font16 {
+    font-size: 1rem;
+  }
+  
+  .font20 {
+    font-size: 1.3rem;
+  }
+  
+  /* font sizes */
+  .font24 {
+    font-size: 1.5rem;
+  }
+  .font30 {
+    font-size: 2rem; 
+  }
+  .font36 {
+    font-size: 2.5rem; 
+  }
+
+  /* form */
+  .formInput {
+    /* display: block; */
+    box-sizing: border-box;
+    min-width: 300px;
+    max-width: 800px;
+    border-radius: 1rem;
+    border: 1px solid var(--blue);
+    padding: 10px;
+    margin-left: 5px;
+    font-size: 16px;
+    margin-right: 10px;
+  }
+
