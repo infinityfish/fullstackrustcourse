@@ -127,7 +127,9 @@ git init
 cargo new --bin server --vcs none
 cargo new --bin frontend --vcs none
 
-#create and add to Cargo.toml
+===================================
+####Connecting frontend and server ####
+create and add to Cargo.toml
 [workspace]
 
 members = [
@@ -138,6 +140,36 @@ members = [
 target/
 dist/
 .env
+
+create frontend/Trunk.toml and add contents
+[build]
+target = "index.html"
+dist = "../dist"
+
+now you can run: trunk serve
+
+# now go to server/main.rs
+axum::response::IntoResponse
+axum::http::StatusCode,
+use std::io;
+
+//serving frontend static files
+let serve_dir = ServeDir::new("../frontend/dist").not_found_service(ServeFile::new("../dist/frontend/index.html"));
+let serve_dir = get_service(serve_dir).handle_error(handle_error);
+
+# add to router
+
+        .nest_service("/", serve_dir.clone())
+        .fallback_service(serve_dir.clone());
+
+# add handle error fn    
+async fn handle_error(_err: io::Error) -> impl IntoResponse {
+        (StatusCode::INTERNAL_SERVER_ERROR, "Something went wrong...")
+    }
+
+  # change current / to /home
+cd into backend: cargo watch -x run
+=========================================
 
 cd into server and Cargo add
 
@@ -154,9 +186,7 @@ cargo install trunk
 rustup target add wasm32-unknown-unknown
 cargo add yew --features yew/csr
 
-#Connecting frontend and server
-create frontend/Trunk.toml and add contents
-now you can run: trunk serve
+
 
 #Examples:
 https://github.com/tokio-rs/axum/blob/main/ECOSYSTEM.md#tutorials
