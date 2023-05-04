@@ -50,10 +50,11 @@ let serve_dir = get_service(serve_dir).handle_error(handle_error);
 
 let app = Router::new()
         .route("/home", get(home))
-        .layer(cors)
         .route("/api/products", get(handlers::get_products).post(handlers::create_product))
-        .route("/api/products/:id", get(handlers::get_one_product).delete(handlers::delete_product))
+        .route("/api/products/:id", get(handlers::get_one_product).delete(handlers::delete_product)
+                                        .put(handlers::update_product))                               
         .with_state(pool)
+        .layer(cors)
         .nest_service("/", serve_dir.clone())
         .fallback_service(serve_dir.clone());
 

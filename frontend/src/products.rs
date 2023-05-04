@@ -1,6 +1,9 @@
 
 use serde::{Deserialize, Serialize};
 use yew::prelude::*;
+use yew_router::prelude::*;
+
+use crate::router::Route;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Product {
@@ -36,6 +39,9 @@ pub fn Products() -> Html {
 
     html! {
         <div class="container">
+            <button class="btn-primary">
+                <Link<Route> to={Route::AddProduct}>{ "Add new Product" }</Link<Route>>
+            </button>
             <h2>{"List of Products: "} {data.len()} </h2>
             <p>{products}</p>
         </div>

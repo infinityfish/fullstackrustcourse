@@ -1,22 +1,25 @@
 use yew::prelude::*;
+use yew_router::prelude::*;
+
 
 mod products;
 use products::Products;
 mod form;
 use form::Form;
-// mod formshort;
-// use formshort::FormShort;
+
+mod router;
+use router::{Route, switch};
 
 #[function_component]
 fn App() -> Html {
 
-
     html! {
-        <div class="container">
-            <h1 class="title">{"Yew ProductsApp"} </h1>
-            <Form />
-            <Products />
-        </div>
+        <BrowserRouter>
+            <div class="container">
+                <h1 class="title">{"YewAxum ProductsApp"} </h1>
+                <Switch<Route> render={switch} /> // <- must be child of <BrowserRouter>
+            </div>
+        </BrowserRouter>
     }
 }
 

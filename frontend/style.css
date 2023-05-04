@@ -30,7 +30,7 @@ html, body {
 
 .btn-primary {
     background: var(--primary);
-    color: var(--dark-bg-color);
+    color: var(--dark-color);
     font-weight: 800;
     border: none;
     text-align: center;
@@ -69,7 +69,7 @@ html, body {
     min-width: 300px;
     max-width: 800px;
     border-radius: 1rem;
-    border: 1px solid var(--blue);
+    border: 1px solid var(--primary);
     padding: 10px;
     margin-left: 5px;
     font-size: 16px;

@@ -1,3 +1,5 @@
+Source code for fullstackrust course.
+
 #Setting up VSCode
 crates - see versions
 rust-analyzer -
@@ -108,15 +110,13 @@ The ? Operator
 
 - Borrowing
 
-following: https://robert.kra.hn/posts/2022-04-03_rust-web-wasm/
-
 #Tools needed
 
 1. Your wasm target:
    rustup target add wasm32-unknown-unknown
 2. Trunk: WASM web application bundler for Rust
    cargo install trunk
-   trunk errors: https://stackoverflow.com/questions/72146492/unable-to-execute-trunk-serve
+
 3. cargo-watch:
    cargo install cargo-watch
    cargo watch -x run
@@ -124,7 +124,7 @@ following: https://robert.kra.hn/posts/2022-04-03_rust-web-wasm/
 mkdir axum-yew-app
 cd axum-yew-app
 git init
-cargo new --bin server --vcs none
+cargo new --bin server2 --vcs none
 cargo new --bin frontend --vcs none
 
 ===================================
@@ -149,6 +149,7 @@ dist = "../dist"
 now you can run: trunk serve
 
 # now go to server/main.rs
+
 axum::response::IntoResponse
 axum::http::StatusCode,
 use std::io;
@@ -162,14 +163,15 @@ let serve_dir = get_service(serve_dir).handle_error(handle_error);
         .nest_service("/", serve_dir.clone())
         .fallback_service(serve_dir.clone());
 
-# add handle error fn    
-async fn handle_error(_err: io::Error) -> impl IntoResponse {
-        (StatusCode::INTERNAL_SERVER_ERROR, "Something went wrong...")
-    }
+# add handle error fn
 
-  # change current / to /home
-cd into backend: cargo watch -x run
-=========================================
+async fn handle_error(\_err: io::Error) -> impl IntoResponse {
+(StatusCode::INTERNAL_SERVER_ERROR, "Something went wrong...")
+}
+
+# change current / to /home
+
+# cd into backend: cargo watch -x run
 
 cd into server and Cargo add
 
@@ -185,11 +187,3 @@ cargo install trunk
 
 rustup target add wasm32-unknown-unknown
 cargo add yew --features yew/csr
-
-
-
-#Examples:
-https://github.com/tokio-rs/axum/blob/main/ECOSYSTEM.md#tutorials
-
-#see how they merge Routes:
-https://github.com/danipardo/petclinic/blob/master/src/main.rs
